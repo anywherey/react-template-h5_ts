@@ -1,20 +1,26 @@
 {
-    "trailingComma": "none",
-    "semi": true,
-    "singleQuote": true,
-    "jsxSingleQuote": false,
-    "endOfLine": "lf",
-    "printWidth": 120,
-    "tabWidth": 4,
-    "proseWrap": "never",
-    "bracketSpacing": false,
-    "arrowParens": "always",
-    "overrides": [
-        {
-            "files": ".prettierrc",
-            "options": {
-                "parser": "json"
-            }
-        }
-    ]
+  "trailingComma": "all",
+  "semi": true,
+  "singleQuote": false,
+  "jsxSingleQuote": false,
+  "jsxBracketSameLine": false,
+  "bracketSameLine": false,
+  "endOfLine": "lf",
+  "printWidth": 120,
+  "tabWidth": 2,
+  "proseWrap": "always",
+  "bracketSpacing": true,
+  "arrowParens": "always",
+  "singleAttributePerLine": false,
+  "overrides": [
+    {
+      "files": ".prettierrc",
+      "options": {
+        "parser": "json"
+      }
+    }
+  ],
+  "import": {
+    "group": "spacing"
+  }
 }

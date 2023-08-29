@@ -1,17 +1,17 @@
-const LOG_IN = 'LOG_IN';
-const LOG_OUT = 'LOG_OUT';
+const LOG_IN = "LOG_IN";
+const LOG_OUT = "LOG_OUT";
 const InitialState = {
-  loggedIn: true
+  loggedIn: true,
 };
-const Reducer = (state:any, action:any) => {
+const Reducer = (state: any, action: any) => {
   switch (action.type) {
-    case 'LOG_IN':
+    case "LOG_IN":
       return {
-        loggedIn: true
+        loggedIn: true,
       };
-    case 'LOG_OUT':
+    case "LOG_OUT":
       return {
-        loggedIn: false
+        loggedIn: false,
       };
     default:
       return state;

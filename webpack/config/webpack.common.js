@@ -1,168 +1,174 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin'); // 简化 HTML 文件创建以服务捆绑包的插件, 将js文件自动引进 html 文件中
+const HtmlWebpackPlugin = require("html-webpack-plugin"); // 简化 HTML 文件创建以服务捆绑包的插件, 将js文件自动引进 html 文件中
 // const PreloadWebpackPlugin = require('preload-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 抽离css文件, 这个插件将CSS取到单独的文件中。它为每个包含CSS的JS文件创建一个CSS文件。它支持按需加载 CSS 和 SourceMaps。
-const WebpackBar = require('webpackbar'); // 优雅的 Webpack 进度条和分析器
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin'); // 启动本地服务/打包错误提示
-const CopyPlugin = require('copy-webpack-plugin'); // 将已存在的单个文件或整个目录复制到生成目录
-const webpack = require('webpack');
-const paths = require('../paths');
-const {isDevelopment, isProduction} = require('../env');
-const {imageInlineSizeLimit, imageBase64Path, shouldBase64FromFileEnd} = require('../conf');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // 抽离css文件, 这个插件将CSS取到单独的文件中。它为每个包含CSS的JS文件创建一个CSS文件。它支持按需加载 CSS 和 SourceMaps。
+const WebpackBar = require("webpackbar"); // 优雅的 Webpack 进度条和分析器
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin"); // 启动本地服务/打包错误提示
+const CopyPlugin = require("copy-webpack-plugin"); // 将已存在的单个文件或整个目录复制到生成目录
+const webpack = require("webpack");
+const paths = require("../paths");
+const { isDevelopment, isProduction } = require("../env");
+const { imageInlineSizeLimit, imageBase64Path, shouldBase64FromFileEnd } = require("../conf");
 const BeforeCleanOutPath = require("../plugins/BeforeCleanOutPath");
-const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
-const postcss=require('../../postcss.config')
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+const ESLintWebpackPlugin = require("eslint-webpack-plugin"); // 引入 ESLint 插件
+const postcss = require("../../postcss.config");
 
 const cssLoaders = (importLoaders) => [
-    // 执行顺序从后到前 less-loader -> postcss-loader -> css-loader -> style-loader/MiniCssExtractPlugin.loader
-    isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader, // style-loader的作用就是将结果以style标签的方式插入DOM树中。style-loader将css-loader打包好的 CSS 代码以<style>标签的形式插入到 HTML 文件中
-    {
-        loader: 'css-loader', // 主要是解析css文件中的@import和url语句，处理css-modules，并将结果作为一个js模块返回
-        options: {
-            modules: false,
-            sourceMap: isDevelopment, // 开发环境开启
-            importLoaders // 执行顺序: 需要先被 less-loader postcss-loader (所以这里设置为 2)
-        }
+  // 执行顺序从后到前 less-loader -> postcss-loader -> css-loader -> style-loader/MiniCssExtractPlugin.loader
+  isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader, // style-loader的作用就是将结果以style标签的方式插入DOM树中。style-loader将css-loader打包好的 CSS 代码以<style>标签的形式插入到 HTML 文件中
+  {
+    loader: "css-loader", // 主要是解析css文件中的@import和url语句，处理css-modules，并将结果作为一个js模块返回
+    options: {
+      modules: false,
+      sourceMap: isDevelopment, // 开发环境开启
+      importLoaders, // 执行顺序: 需要先被 less-loader postcss-loader (所以这里设置为 2)
     },
-    {
-        loader: 'postcss-loader', // 进一步处理css文件，比如添加浏览器前缀，压缩 CSS 等
-        options: {
-            postcssOptions: postcss
-        }
-    }
+  },
+  {
+    loader: "postcss-loader", // 进一步处理css文件，比如添加浏览器前缀，压缩 CSS 等
+    options: {
+      postcssOptions: postcss,
+    },
+  },
 ];
-console.log(cssLoaders(2))
 const config = {
-    entry: {
-        app: paths.appIndex
+  entry: {
+    app: paths.appIndex,
+  },
+  cache: {
+    // 缓存,cache.type 设置为 'filesystem' 是会开放更多的可配置项。
+    // 收集在反序列化期间分配的未使用的内存，, 仅当 cache.type 设置为 'filesystem' 时生效。这需要将数据复制到更小的缓冲区中，并有性能成本。
+    type: "filesystem",
+    buildDependencies: {
+      // 是一个针对构建的额外代码依赖的数组对象。webpack 将使用这些项和所有依赖项的哈希值来使文件系统缓存失效。
+      config: [__filename],
     },
-    cache: {
-        // 缓存,cache.type 设置为 'filesystem' 是会开放更多的可配置项。
-        // 收集在反序列化期间分配的未使用的内存，, 仅当 cache.type 设置为 'filesystem' 时生效。这需要将数据复制到更小的缓冲区中，并有性能成本。
-        type: 'filesystem',
-        buildDependencies: {
-            // 是一个针对构建的额外代码依赖的数组对象。webpack 将使用这些项和所有依赖项的哈希值来使文件系统缓存失效。
-            config: [__filename]
-        }
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js", ".json"],
+    alias: {
+      "@": paths.appSrc,
+      // mock: paths.appMock,
+      // Components: paths.appSrcComponents,
+      // Utils: paths.appSrcUtils
     },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.json'],
-        alias: {
-            '@': paths.appSrc,
-            // mock: paths.appMock,
-            // Components: paths.appSrcComponents,
-            // Utils: paths.appSrcUtils
-        }
-    },
-    module: {
-        rules: [
-            {
-                test: /\.(tsx?|js)$/,
-                loader: 'babel-loader', // 使用缓存
-                options: {cacheDirectory: true},
-                exclude: [/node_modules/, /(.|_)min\.js$/]
-            },
-            {
-                test: /\.css$/,
-                
-                use: cssLoaders(1)
-            },
-            {
-                test: /\.less$/,
-                use: [
-                    ...cssLoaders(2),
-                    {
-                        loader: 'less-loader',
-                        options: {
-                            sourceMap: isDevelopment
-                        }
-                    }
-                ]
-            },
+  },
+  output: {
+    path: paths.appBuild,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(tsx?|js)$/,
+        loader: "babel-loader", // 使用缓存
+        options: { cacheDirectory: true },
+        exclude: [/node_modules/, /(.|_)min\.js$/],
+      },
+      {
+        test: /\.css$/,
 
-            {
-                test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-                type: 'asset',
-                parser: {
-                    // 当提供函数时，返回 true 值时告知 webpack 将模块作为一个 Base64 编码的字符串注入到包中，
-                    // 否则模块文件会被生成到输出的目标目录中。将base64的资源都放在一个目录下
-                    dataUrlCondition: (source, {filename}) => {
-                        // 1. 如果是base64下的目录，将文件打包成base64
-                        if (filename.includes(imageBase64Path)) {
-                            return true;
-                        }
-                        // 2. 如果开启了文件尾部扫描，则形如 xxx.base64.xxx会以Base64 编码的字符串注入到包中
-                        if (shouldBase64FromFileEnd && filename.includes('.base64')) {
-                            return true;
-                        }
-                        // 3. 对于小于imageInlineSizeLimit的文件，会以Base64 编码的字符串注入到包中
-                        if (source.length <= imageInlineSizeLimit) {
-                            return true;
-                        }
-                        return false;
-                    }
-                }
+        use: cssLoaders(1),
+      },
+      {
+        test: /\.less$/,
+        use: [
+          ...cssLoaders(2),
+          {
+            loader: "less-loader",
+            options: {
+              sourceMap: isDevelopment,
             },
-            {
-                test: /\.(eot|ttf|woff|woff2?)$/,
-                exclude: paths.appSvg, // 不处理 svg类型文件
-                type: 'asset/resource'
-            },
-            {
-                test: /\.svg$/,
-                loader: 'svg-sprite-loader',
-                include: paths.appSvg,
-                options: {
-                    symbolId: 'icon-[name]' // symbolId和use使用的名称对应 <use xlinkHref={"#icon-" + svgName} />
-                }
+          },
+        ],
+      },
+
+      {
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        type: "asset",
+        parser: {
+          // 当提供函数时，返回 true 值时告知 webpack 将模块作为一个 Base64 编码的字符串注入到包中，
+          // 否则模块文件会被生成到输出的目标目录中。将base64的资源都放在一个目录下
+          dataUrlCondition: (source, { filename }) => {
+            // 1. 如果是base64下的目录，将文件打包成base64
+            if (filename.includes(imageBase64Path)) {
+              return true;
             }
-        ]
-    },
-    plugins: [
-        isDevelopment?'':new MiniCssExtractPlugin({
-            filename: 'css/[name].[contenthash:8].css',
-            chunkFilename: 'css/[name].[contenthash:8].chunk.css',
-            ignoreOrder: true
-        }),
-        new BeforeCleanOutPath(),
-        new NodePolyfillPlugin(),
-        new webpack.ProvidePlugin({
-            React: "react",
-          }),
-        new webpack.DefinePlugin(paths.appDefineVariable),
-        new HtmlWebpackPlugin({
-            template: paths.appHtml,
-            cache: true,
-            env: process.env.NODE_ENV || ''
-        }),
-        new CopyPlugin({
-            patterns: [
-                {
-                    context: paths.appPublic,
-                    from: '*',
-                    to: paths.appBuild,
-                    toType: 'dir',
-                    globOptions: {
-                        dot: true,
-                        gitignore: true,
-                        ignore: ['**/index.html']
-                    }
-                }
-            ]
-        }),
-        new WebpackBar({
-            name: isDevelopment ? 'RUNNING' : 'BUNDLING',
-            color: isDevelopment ? '#52c41a' : '#722ed1'
-        }),
-        new ForkTsCheckerWebpackPlugin({
-            typescript: {
-                configFile: paths.appTsConfig
+            // 2. 如果开启了文件尾部扫描，则形如 xxx.base64.xxx会以Base64 编码的字符串注入到包中
+            if (shouldBase64FromFileEnd && filename.includes(".base64")) {
+              return true;
             }
+            // 3. 对于小于imageInlineSizeLimit的文件，会以Base64 编码的字符串注入到包中
+            if (source.length <= imageInlineSizeLimit) {
+              return true;
+            }
+            return false;
+          },
+        },
+      },
+      {
+        test: /\.(eot|ttf|woff|woff2?)$/,
+        exclude: paths.appSvg, // 不处理 svg类型文件
+        type: "asset/resource",
+      },
+      {
+        test: /\.svg$/,
+        loader: "svg-sprite-loader",
+        include: paths.appSvg,
+        options: {
+          symbolId: "icon-[name]", // symbolId和use使用的名称对应 <use xlinkHref={"#icon-" + svgName} />
+        },
+      },
+    ],
+  },
+  plugins: [
+    new ESLintWebpackPlugin(),
+    isDevelopment
+      ? ""
+      : new MiniCssExtractPlugin({
+          filename: "css/[name].[contenthash:8].css",
+          chunkFilename: "css/[name].[contenthash:8].chunk.css",
+          ignoreOrder: true,
         }),
-        // new PreloadWebpackPlugin({
-        //     rel: 'prefetch', // 预加载
-        //     include: ['book'],
-        // }),
-    ]
+    new BeforeCleanOutPath(),
+    new NodePolyfillPlugin(),
+    new webpack.ProvidePlugin({
+      React: "react",
+    }),
+    new webpack.DefinePlugin(paths.appDefineVariable),
+    new HtmlWebpackPlugin({
+      template: paths.appHtml,
+      cache: true,
+      env: process.env.NODE_ENV || "",
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          context: paths.appPublic,
+          from: "*",
+          to: paths.appBuild,
+          toType: "dir",
+          globOptions: {
+            dot: true,
+            gitignore: true,
+            ignore: ["**/index.html"],
+          },
+        },
+      ],
+    }),
+    new WebpackBar({
+      name: isDevelopment ? "RUNNING" : "BUNDLING",
+      color: isDevelopment ? "#52c41a" : "#722ed1",
+    }),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        configFile: paths.appTsConfig,
+      },
+    }),
+    // new PreloadWebpackPlugin({
+    //     rel: 'prefetch', // 预加载
+    //     include: ['book'],
+    // }),
+  ],
 };
 
 module.exports = config;
