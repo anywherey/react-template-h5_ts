@@ -3,8 +3,11 @@ import { routeInterface } from "@/interface/route";
 import { generateSHA256Hash } from "@/utils/hash";
 import HOCdeal from "./HOC";
 const RouteWithSubRoutes = (route: routeInterface) => {
-  const WrappedComponent = HOCdeal(route, 0) as React.ComponentType | null;
-  const WrappedElement = HOCdeal(route, 1) as unknown as React.ReactNode | null;
+  const wrappedComponent = HOCdeal(route, 0) as React.ComponentType | null;
+  const wrappedElement = HOCdeal(route, 1) as unknown as React.ReactNode | null;
+  /**
+   * @description 将Route组件的默认属性填入，不填入自定义的参数
+   */
   const routeProps: RouteProps = {
     path: route.path,
     caseSensitive: route.caseSensitive,
@@ -17,19 +20,19 @@ const RouteWithSubRoutes = (route: routeInterface) => {
     errorElement: route.errorElement,
     ErrorBoundary: route.ErrorBoundary,
     lazy: route.lazy,
-    Component: WrappedComponent,
-    element: WrappedElement,
+    Component: wrappedComponent,
+    element: wrappedElement,
   };
   if (route.children && route.children.length > 0) {
     return (
-      <Route key={route.path || generateSHA256Hash()} index={route.index} {...routeProps}>
+      <Route key={route.path} index={route.index} {...routeProps}>
         {route.children.map((subRoute: routeInterface) => {
           return RouteWithSubRoutes(subRoute);
         })}
       </Route>
     );
   } else {
-    return <Route key={route.path || generateSHA256Hash()} {...routeProps} />;
+    return <Route key={route.path} {...routeProps} />;
   }
 };
 export default RouteWithSubRoutes;

@@ -48,7 +48,7 @@ module.exports = {
         js: "never",
       },
     ],
-    "@typescript-eslint/no-var-requires": OFF, // 忽略没有导入声明模块
+    "@typescript-eslint/no-var-requires": ERROR, // 忽略没有导入声明模块
     "@typescript-eslint/no-empty-function": WARN,
     "@typescript-eslint/no-unused-vars": WARN,
     "@typescript-eslint/no-explicit-any": WARN,

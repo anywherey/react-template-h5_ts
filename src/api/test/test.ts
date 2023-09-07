@@ -11,3 +11,9 @@ export function getTestApi2() {
     method: "get",
   });
 }
+export function getMockApi() {
+  return request({
+    url: "/mock",
+    method: "get",
+  });
+}

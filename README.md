@@ -34,6 +34,7 @@ yarn dev / npm run dev
 ├─ webpack              	/ 用于配置打包
 ├─ public               	/ 用于放置静态资源
 ├─ .husky             		/ pre-commit hook
+├─ scripts
 ├─ global.d.ts          	/ 存放全局ts接口定义
 ```
 

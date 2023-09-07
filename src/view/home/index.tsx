@@ -1,11 +1,16 @@
 import { FC } from "react";
-import { getTestApi, getTestApi2 } from "@/api/test/test";
+import { getTestApi, getTestApi2, getMockApi } from "@/api/test/test";
 import { cancelRequest } from "@/http";
 import { useNavigate, NavigateFunction } from "react-router";
 import { getToken, removeToken } from "@/utils/authority";
 import "./index.less";
 const Home: FC = () => {
   const navRoute: NavigateFunction = useNavigate();
+  const getMockData = () => {
+    getMockApi().then((res) => {
+      console.log(res);
+    });
+  };
   return (
     <div className="home">
       <div className="home-first">home</div>
@@ -54,6 +59,13 @@ const Home: FC = () => {
           取消该多个接口
         </button>
       </div>
+      <button
+        onClick={() => {
+          getMockData();
+        }}
+      >
+        测试Mock了的/test4接口
+      </button>
       <div
         style={{
           height: "300px",
