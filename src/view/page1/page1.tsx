@@ -9,7 +9,7 @@ const Page1 = (data: any) => {
     console.log("testtttt");
   }, []);
   return (
-    <div className="page1" onClick={() => dispatch(increment())}>
+    <div className="page1-page" onClick={() => dispatch(increment())}>
       {count.value}
     </div>
   );

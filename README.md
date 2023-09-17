@@ -1,3 +1,7 @@
+## 项目说明
+
+该项目中的一些插件不是必要，具体的插件选择还需要依据项目来选择并删除不必要的插件来进行开发。
+
 ## 项目安装
 
 ```
@@ -29,13 +33,14 @@ yarn dev / npm run dev
 │        ├──routes		/ 路由文件定义
 │   ├──utils			/ 工具方法
 │   ├──view             	/ 路由页面
-│   ├──App.tsx
-│   ├──index.tsx
+│   ├──App.tsx                  / 应用的主要组件
+│   ├──index.tsx                / 应用的入口
 ├─ webpack              	/ 用于配置打包
 ├─ public               	/ 用于放置静态资源
 ├─ .husky             		/ pre-commit hook
 ├─ scripts
-├─ global.d.ts          	/ 存放全局ts接口定义
+│     ├──verify-commit		/ 验证提交信息
+├─ global.d.ts          	/ 定义全局ts接口
 ```
 
 ## [接口请求配置说明](./src/http/README.md)

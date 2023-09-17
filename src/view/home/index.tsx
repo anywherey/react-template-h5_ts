@@ -12,8 +12,8 @@ const Home: FC = () => {
     });
   };
   return (
-    <div className="home">
-      <div className="home-first">home</div>
+    <div className="home-page">
+      <div className="home-page-first">home</div>
       <div onClick={() => (getToken() ? console.log("gettoken") : "")}>getToken</div>
       <div onClick={() => removeToken()}>removeToken</div>
       <div style={{ marginTop: "30px" }}>

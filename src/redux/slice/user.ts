@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, Slice } from "@reduxjs/toolkit";
 
-export const userSlice = createSlice({
+export const userSlice: Slice = createSlice({
   name: "user",
   initialState: {
     token: "",

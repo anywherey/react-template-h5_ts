@@ -9,10 +9,10 @@ const NotFound: FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...rest }) => {
     navigate(-1);
   }
   return (
-    <div className="missing" {...rest}>
-      <img className="missing-pic" src={imgerro} alt="" />
-      <div className="missing-title">页面出错</div>
-      <button className="missing-subtitle" onClick={back}>
+    <div className="missing-page" {...rest}>
+      <img className="missing-page-pic" src={imgerro} alt="" />
+      <div className="missing-page-title">页面出错</div>
+      <button className="missing-page-subtitle" onClick={back}>
         回到上一页
       </button>
     </div>

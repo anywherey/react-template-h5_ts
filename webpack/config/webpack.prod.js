@@ -49,8 +49,8 @@ const prodConfig = {
     splitChunks: {
       automaticNameDelimiter: "-", // 生成名称的分隔符
       chunks: "all", // all-所有模块生效，async-抽取异步模块，initial:同步模块生效
-      // minSize: 100000, //  todo, 后续还有性能问题再拆, 生成 chunk 的最小体积（以 bytes 为单位）。
-      // maxSize: 40000, // todo, 后续还有性能问题再拆, 生成 chunk 的最大体积（以 bytes 为单位）。
+      // minSize: 204800, //  todo, 后续还有性能问题再拆, 生成 chunk 的最小体积（以 bytes 为单位）。
+      maxSize: 40000, // todo, 后续还有性能问题再拆, 生成 chunk 的最大体积（以 bytes 为单位）。
       cacheGroups: {
         commons: {
           test: /[/\\]node_modules[/\\]/,
@@ -59,10 +59,11 @@ const prodConfig = {
         },
         // 抽离自定义工具库
         utilCommon: {
+          // test: /\/utils\//,
           name: "common",
           minSize: 0, // 将引用模块分离成新代码文件的最小体积
           minChunks: 2, // 表示将引用模块如不同文件引用了多少次，才能分离生成新chunk
-          priority: -20, // 优先级
+          // priority: -20, // 优先级
         },
       },
     },

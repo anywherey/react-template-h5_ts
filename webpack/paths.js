@@ -44,7 +44,7 @@ function resolveDefineVariable() {
 
 module.exports = {
   appDefineVariable: resolveDefineVariable(), // 到页面中可以用到的变量
-  appBuild: resolveApp("yourBuild"), // 打包构建目录
+  appBuild: resolveApp("build"), // 打包构建目录
   appPublic: resolveApp("public"),
   appIndex: resolveModule(resolveApp, "src/index"),
   appHtml: resolveApp("public/index.html"),

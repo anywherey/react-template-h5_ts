@@ -52,6 +52,7 @@ module.exports = {
     "@typescript-eslint/no-empty-function": WARN,
     "@typescript-eslint/no-unused-vars": WARN,
     "@typescript-eslint/no-explicit-any": WARN,
+    "@typescript-eslint/no-var-requires": OFF,
     "react-hooks/rules-of-hooks": ERROR, // 检查 Hook 的规则
     "react-hooks/exhaustive-deps": WARN, // 检查 Effect 的依赖
     "react/jsx-uses-react": OFF,
