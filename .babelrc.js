@@ -15,8 +15,8 @@ module.exports = {
                 corejs: 3
             }
         ],
+        '@babel/preset-typescript',
         '@babel/preset-react',
-        '@babel/preset-typescript'
     ],
     // 插件集合 (plugins) 执行顺序: 从前往后。
     plugins: [
