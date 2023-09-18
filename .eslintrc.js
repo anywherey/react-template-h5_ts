@@ -7,7 +7,7 @@ module.exports = {
   // 提供运行环境，一个环境定义了一组预定义的全局变量
   env: {
     browser: true,
-    es2017: true,
+    es6: true,
     node: true,
   },
   // 配置文件可以被基础配置中的已启用的规则继承。
@@ -48,11 +48,10 @@ module.exports = {
         js: "never",
       },
     ],
-    "@typescript-eslint/no-var-requires": ERROR, // 忽略没有导入声明模块
+    "@typescript-eslint/no-var-requires": OFF, // 忽略没有导入声明模块
     "@typescript-eslint/no-empty-function": WARN,
     "@typescript-eslint/no-unused-vars": WARN,
     "@typescript-eslint/no-explicit-any": WARN,
-    "@typescript-eslint/no-var-requires": OFF,
     "react-hooks/rules-of-hooks": ERROR, // 检查 Hook 的规则
     "react-hooks/exhaustive-deps": WARN, // 检查 Effect 的依赖
     "react/jsx-uses-react": OFF,

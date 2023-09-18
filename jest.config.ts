@@ -1,26 +1,31 @@
-// jest.config.ts
+/*
+ * For a detailed explanation regarding each configuration property, visit:
+ * https://jestjs.io/docs/configuration
+ */
 
-import type { Config } from "@jest/types";
+const { pathsToModuleNameMapper } = require("ts-jest");
+const { compilerOptions } = require("./tsconfig.json");
 
-const config: Config.InitialOptions = {
-  // Jest 配置选项
-  clearMocks: true,
-  moduleDirectories: ["node_modules", "src"],
-  testMatch: ["<rootDir>/test/**/*.test.tsx"],
+module.exports = {
+  roots: ["./src"],
+  preset: "ts-jest",
   testEnvironment: "jsdom",
+  setupFiles: ["jest-canvas-mock"],
+  clearMocks: true,
+  collectCoverage: true,
+  coverageDirectory: "test/coverage",
+  moduleDirectories: ["node_modules", "src"],
+  moduleFileExtensions: ["ts", "js"],
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+    prefix: "<rootDir>/",
+  }),
+  testMatch: ["<rootDir>/test/__tests__/**/*.test.ts"],
   transform: {
-    "^.+\\.tsx?$": [
-      "ts-jest",
-      {
-        tsconfig: "tsconfig.json",
-      },
-    ],
+    "^.+\\.ts$": "ts-jest",
   },
-  moduleNameMapper: {
-    "\\.(css|less)$": "identity-obj-proxy",
-    "^@/(.*)$": "<rootDir>/src/$1",
+  globals: {
+    "ts-jest": {
+      tsConfig: "./tsconfig.json",
+    },
   },
-  // 其他配置...
 };
-
-export default config;
