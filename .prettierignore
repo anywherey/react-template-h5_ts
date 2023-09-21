@@ -1,3 +1,9 @@
-/node_modules
-/build
-/dist
+node_modules
+build
+dist
+scripts
+webpack
+.husky
+.eslintrc
+jest.config
+lint-staged.config.js

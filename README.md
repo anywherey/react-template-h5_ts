@@ -2,6 +2,8 @@
 
 该项目中的一些插件不是必要，具体的插件选择还需要依据项目来选择并删除不必要的插件来进行开发。
 
+拉取代码时如果有error Delete cr prettier/prettier报错，请禁止git自动将LF转换为CRLF:**git** config --global core.autocrlf **false**
+
 ## 项目安装
 
 ```

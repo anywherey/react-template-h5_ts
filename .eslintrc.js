@@ -1,6 +1,6 @@
-const OFF = "off"; // "off" 或 0 - 关闭规则
-const WARN = "warn"; // "warn" 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出)
-const ERROR = "error"; // "error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
+const off = "off"; // "off" 或 0 - 关闭规则
+const warn = "warn"; // "warn" 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出)
+const error = "error"; // "error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
 
 module.exports = {
   root: true,
@@ -27,6 +27,9 @@ module.exports = {
     sourceType: "module",
   },
   settings: {
+    react: {
+      version: "detect",
+    },
     "import/resolver": {
       node: {
         extensions: [".tsx", ".ts", ".js", ".json"],
@@ -40,7 +43,7 @@ module.exports = {
   // ESLint 附带有大量的规则。你可以使用注释或配置文件修改你项目中要使用的规则。要改变一个规则设置，你必须将规则 ID 设置为下列值之一：
   rules: {
     "import/extensions": [
-      OFF,
+      off,
       "ignorePackages",
       {
         ts: "never",
@@ -48,17 +51,18 @@ module.exports = {
         js: "never",
       },
     ],
-    "@typescript-eslint/no-var-requires": OFF, // 忽略没有导入声明模块
-    "@typescript-eslint/no-empty-function": WARN,
-    "@typescript-eslint/no-unused-vars": WARN,
-    "@typescript-eslint/no-explicit-any": WARN,
-    "react-hooks/rules-of-hooks": ERROR, // 检查 Hook 的规则
-    "react-hooks/exhaustive-deps": WARN, // 检查 Effect 的依赖
-    "react/jsx-uses-react": OFF,
-    "react/react-in-jsx-scope": OFF,
-    "prefer-const": ERROR,
+    "linebreak-style": off, //取消对LF和CRLF的检验
+    "@typescript-eslint/no-var-requires": off, // 忽略没有导入声明模块
+    "@typescript-eslint/no-empty-function": warn,
+    "@typescript-eslint/no-unused-vars": warn,
+    "@typescript-eslint/no-explicit-any": warn,
+    "react-hooks/rules-of-hooks": error, // 检查 Hook 的规则
+    "react-hooks/exhaustive-deps": warn, // 检查 Effect 的依赖
+    "react/jsx-uses-react": off,
+    "react/react-in-jsx-scope": off,
+    "prefer-const": error,
     "no-console":
-      process.env.NODE_ENV === "development" ? ["warn", { allow: [WARN, ERROR] }] : ["error", { allow: [WARN, ERROR] }],
-    "no-debugger": process.env.NODE_ENV === "development" ? WARN : ERROR,
+      process.env.NODE_ENV === "development" ? ["warn", { allow: [warn, error] }] : ["error", { allow: [warn, error] }],
+    "no-debugger": process.env.NODE_ENV === "development" ? warn : error,
   },
 };

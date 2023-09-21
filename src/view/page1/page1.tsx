@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { increment } from "../../redux/slice/counter";
+import { increment } from "@/redux/slice/counter";
 import "./page1.less";
 import { useEffect } from "react";
 const Page1 = (data: any) => {
