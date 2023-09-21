@@ -29,7 +29,7 @@ yarn dev / npm run dev
 │   ├──interface		/ 存放定义的ts接口
 │   ├──mobx			/（可选）数据状态管理插件mobx
 │   ├──redux			/（可选）数据状态管理插件redux
-│   ├──reducers			/（可选）数据状态管理
+│   ├──reducers			/（可选）数据状态管理----context传值
 │   ├──router			/ 存放路由
 │        ├──components		/ 路由控制组件
 │        ├──routes		/ 路由文件定义
@@ -40,8 +40,7 @@ yarn dev / npm run dev
 ├─ webpack              	/ 用于配置打包
 ├─ public               	/ 用于放置静态资源
 ├─ .husky             		/ pre-commit hook
-├─ scripts
-│     ├──verify-commit		/ 验证提交信息
+├─ test                         / 组件测试
 ├─ global.d.ts          	/ 定义全局ts接口
 ```
 
@@ -49,7 +48,11 @@ yarn dev / npm run dev
 
 ## 数据状态管理的选择
 
-## hook的选择
+默认安装了Redux和Mobx这两个插件，按照需要选择或删除，也可以用写context的方法
+
+## 自定义hook的选择
+
+可以手动书写自己想要hook到src/hooks文件夹下，也可以用插件如ahooks(官网：https://ahooks.js.org/zh-CN/hooks/use-request/index)
 
 # 路由说明
 
@@ -59,7 +62,12 @@ yarn dev / npm run dev
 
     默认采用amfe-flexible+postcss-pxtorem的rem方案，也可以采用postcss的vw插件来选取vw方案。在postcss.config中有相应的注释来选取所想采用的方案。
 
-# 代码的规范开发
+
+# 代码的规范提交
+
+lint-staged.config的校验代码功能默认注释关闭。若有需要，可开启注释代码并在相应的配置(prettierrc、eslint)下自定义配置。
+
+# 代码的规范开发插件配置
 
 ## prettierrc配置说明
 
@@ -113,6 +121,8 @@ yarn dev / npm run dev
 
 ## eslint配置说明
 
-# 代码的规范提交
+配置详情见官网文档:https://zh-hans.eslint.org/docs/latest/use/configure/
 
 # 组件的功能测试
+
+采用了jest+@testing-library/react+
