@@ -1,5 +1,4 @@
 import Cookies from "js-cookie";
-import { permissions } from "@/interface/route";
 const TokenKey = "mytoken";
 export function getToken() {
   console.log(Cookies.get(TokenKey));
@@ -19,7 +18,6 @@ export function removeToken() {
   return Cookies.remove(TokenKey);
 }
 
-export function getPermissions(permissions: permissions) {}
 function parseExpires(str: expires) {
   const num = parseInt(str.substring(0, str.length - 1));
   const unit = str.charAt(str.length - 1).toLowerCase();

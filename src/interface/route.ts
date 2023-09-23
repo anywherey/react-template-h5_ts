@@ -2,9 +2,8 @@ import { IndexRouteObject, NonIndexRouteObject } from "react-router-dom";
 export type permissions = Array<string>;
 // 增加内容接口
 interface newRouteObject {
-  auth?: boolean;
-  permissions?: permissions;
-  element?: React.ReactNode | null;
+  auth?: boolean; //权限
+  permissions?: permissions; //权限
 }
 // 修改原有IndexRouteObject接口
 interface extendedIndexRouteObject extends IndexRouteObject, newRouteObject {}

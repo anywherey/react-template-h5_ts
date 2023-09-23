@@ -32,7 +32,7 @@ module.exports = {
     },
     "import/resolver": {
       node: {
-        extensions: [".tsx", ".ts", ".js", ".json"],
+        extensions: [".tsx", ".ts", ".js"],
       },
       typescript: {},
     },
@@ -61,6 +61,7 @@ module.exports = {
     "react/jsx-uses-react": off,
     "react/react-in-jsx-scope": off,
     "prefer-const": error,
+    "react/prop-types": off,
     "no-console":
       process.env.NODE_ENV === "development" ? ["warn", { allow: [warn, error] }] : ["error", { allow: [warn, error] }],
     "no-debugger": process.env.NODE_ENV === "development" ? warn : error,

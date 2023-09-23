@@ -13,7 +13,7 @@ const config: AxiosRequestConfig = {
   headers: {
     "Content-Type": "application/json;charset=utf-8",
   },
-  validateStatus(status) {
+  validateStatus(_status) {
     // 使用async-await，处理reject情况较为繁琐，所以全部返回resolve，在业务代码中处理异常
     return true;
   },

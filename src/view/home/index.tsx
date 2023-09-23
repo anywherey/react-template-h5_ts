@@ -15,7 +15,18 @@ const Home: FC = () => {
     <div className="home-page">
       <div className="home-page-first">home</div>
       <div onClick={() => (getToken() ? console.log("gettoken") : "")}>getToken</div>
-      <div onClick={() => removeToken()}>removeToken</div>
+      <div
+        onClick={() => removeToken()}
+        style={{
+          cursor: "pointer",
+          height: "100px",
+          lineHeight: "100px",
+          textAlign: "center",
+          backgroundColor: "goldenrod",
+        }}
+      >
+        removeToken
+      </div>
       <div style={{ marginTop: "30px" }}>
         <button
           onClick={() => {
@@ -72,6 +83,7 @@ const Home: FC = () => {
           background: "skyblue",
           display: "flex",
           alignItems: "center",
+          cursor: "pointer",
           justifyContent: "center",
           marginTop: "50px",
         }}
@@ -85,6 +97,7 @@ const Home: FC = () => {
           background: "green",
           display: "flex",
           alignItems: "center",
+          cursor: "pointer",
           justifyContent: "center",
           marginTop: "50px",
         }}

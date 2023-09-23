@@ -1,31 +1,24 @@
-/*
- * For a detailed explanation regarding each configuration property, visit:
- * https://jestjs.io/docs/configuration
- */
-
-const { pathsToModuleNameMapper } = require("ts-jest");
-const { compilerOptions } = require("./tsconfig.json");
-
+/** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-  roots: ["./src"],
   preset: "ts-jest",
-  testEnvironment: "jsdom",
-  setupFiles: ["jest-canvas-mock"],
   clearMocks: true,
   collectCoverage: true,
-  coverageDirectory: "test/coverage",
-  moduleDirectories: ["node_modules", "src"],
-  moduleFileExtensions: ["ts", "js"],
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
-    prefix: "<rootDir>/",
-  }),
-  testMatch: ["<rootDir>/test/__tests__/**/*.test.ts"],
+  coverageDirectory: "test/__coverage__",
+  moduleDirectories: ["src","node_modules",],
+  moduleFileExtensions: ["tsx","ts","js"],
+  testEnvironment: "jest-environment-jsdom",
+  setupFilesAfterEnv: ["<rootDir>/test/setupTests.ts"],
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1",
+    "^~test/(.*)$": "<rootDir>/test/$1",
+    "\\.(less|css)$": 'jest-less-loader' // 支持less
+  },
+  testMatch: ["<rootDir>/test/__test__/**/*.test.tsx"],
   transform: {
-    "^.+\\.ts$": "ts-jest",
-  },
-  globals: {
-    "ts-jest": {
-      tsConfig: "./tsconfig.json",
-    },
-  },
+    "^.+\\.ts$": ['ts-jest', {
+      babel: true,
+      tsConfig: 'tsconfig.json',
+    }]
+  }
 };
+export {};

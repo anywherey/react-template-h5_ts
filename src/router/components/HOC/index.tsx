@@ -1,29 +1,29 @@
 import { routeInterface, getElement } from "@/interface/route";
 import { getToken } from "@/utils/authority";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { cancelRequest } from "@/http";
 function HOCdeal(route: routeInterface, getElement: getElement) {
   return function AuthCheckWrapper() {
     const location = useLocation();
+    const navigate = useNavigate();
     /* 在路由切换时的处理 */
     useEffect(() => {
       if (!route.children) {
-        console.log(location);
         cancelRequest();
+      }
+      if (route.auth && !getToken()) {
+        navigate("/login");
       }
     }, [location]);
 
     /* 权限判断 */
-    if (route.auth && !getToken()) {
-      return <Navigate to="/login" replace />;
-    }
     /* 默认返回 */
     switch (getElement) {
       case 0:
-        return route.Component ? <route.Component /> : null;
+        return route.Component && <route.Component />;
       case 1:
-        return route.element ? route.element : null;
+        return route.element;
       default:
         return null;
     }

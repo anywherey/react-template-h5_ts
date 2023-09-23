@@ -45,7 +45,7 @@ const config = {
     },
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".json"],
+    extensions: [".tsx", ".ts", ".js"],
     alias: {
       "@": paths.appSrc,
       // mock: paths.appMock,
@@ -122,9 +122,7 @@ const config = {
   },
   plugins: [
     new ESLintWebpackPlugin(),
-    isDevelopment
-      ? ""
-      : new MiniCssExtractPlugin({
+    isDevelopment&&new MiniCssExtractPlugin({
           filename: "css/[name].[contenthash:8].css",
           chunkFilename: "css/[name].[contenthash:8].chunk.css",
           ignoreOrder: true,

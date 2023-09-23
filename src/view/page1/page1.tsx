@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { increment } from "@/redux/slice/counter";
 import "./page1.less";
 import { useEffect } from "react";
-const Page1 = (data: any) => {
+const Page1 = () => {
   const count = useSelector((state: any) => state.counter);
   const dispatch = useDispatch();
   useEffect(() => {

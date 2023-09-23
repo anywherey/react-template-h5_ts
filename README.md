@@ -40,7 +40,7 @@ yarn dev / npm run dev
 ├─ webpack              	/ 用于配置打包
 ├─ public               	/ 用于放置静态资源
 ├─ .husky             		/ pre-commit hook
-├─ test                         / 组件测试
+├─ test                         / 组件测试模块
 ├─ global.d.ts          	/ 定义全局ts接口
 ```
 
@@ -61,7 +61,6 @@ yarn dev / npm run dev
 # 适配说明
 
     默认采用amfe-flexible+postcss-pxtorem的rem方案，也可以采用postcss的vw插件来选取vw方案。在postcss.config中有相应的注释来选取所想采用的方案。
-
 
 # 代码的规范提交
 
@@ -123,6 +122,8 @@ lint-staged.config的校验代码功能默认注释关闭。若有需要，可�
 
 配置详情见官网文档:https://zh-hans.eslint.org/docs/latest/use/configure/
 
-# 组件的功能测试
+# 单元测试
 
-采用了jest+@testing-library/react+
+采用了jest+@testing-library/react
+
+(enzyme不支持react v18，故放弃)

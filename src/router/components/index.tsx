@@ -1,8 +1,8 @@
 import { Route, RouteProps } from "react-router-dom";
 import { routeInterface } from "@/interface/route";
-import { generateSHA256Hash } from "@/utils/hash";
 import HOCdeal from "./HOC";
-const RouteWithSubRoutes = (route: routeInterface) => {
+import { generateSHA256Hash } from "@/utils/hash";
+const RouteWithSubRoutes = (route: routeInterface, mainPath?: string) => {
   const wrappedComponent = HOCdeal(route, 0) as React.ComponentType | null;
   const wrappedElement = HOCdeal(route, 1) as unknown as React.ReactNode | null;
   /**
@@ -17,22 +17,29 @@ const RouteWithSubRoutes = (route: routeInterface) => {
     hasErrorBoundary: route.hasErrorBoundary,
     shouldRevalidate: route.shouldRevalidate,
     handle: route.handle,
+    index: route.index,
     errorElement: route.errorElement,
     ErrorBoundary: route.ErrorBoundary,
     lazy: route.lazy,
     Component: wrappedComponent,
     element: wrappedElement,
   };
+  const routePath = () => {
+    if (mainPath && route.path) {
+      return mainPath + route.path;
+    }
+    return route.path;
+  };
   if (route.children && route.children.length > 0) {
     return (
-      <Route key={route.path} index={route.index} {...routeProps}>
+      <Route key={route.path} {...routeProps} index={false}>
         {route.children.map((subRoute: routeInterface) => {
-          return RouteWithSubRoutes(subRoute);
+          return RouteWithSubRoutes(subRoute, route.path);
         })}
       </Route>
     );
   } else {
-    return <Route key={route.path} {...routeProps} />;
+    return <Route key={routePath() || generateSHA256Hash()} {...routeProps} />;
   }
 };
 export default RouteWithSubRoutes;
