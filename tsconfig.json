@@ -21,10 +21,10 @@
     "noEmit": true,
     "baseUrl": "./",
     "paths": {
-      "~test/*": ["test/*"],
+      "~test/*": ["tests/*"],
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "global.d.ts", "test"],
+  "include": ["src", "global.d.ts", "tests"],
   "exclude": ["node_modules"]
 }

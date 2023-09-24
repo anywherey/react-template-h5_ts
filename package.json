@@ -18,6 +18,7 @@
     "prepare": "husky install",
     "pre-commit": "lint-staged",
     "test": "jest",
+    "e2e": "cypress open",
     "eject": "react-scripts eject"
   },
   "dependencies": {
@@ -119,6 +120,7 @@
     "@types/js-cookie": "^3.0.3",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
+    "cypress": "^13.2.0",
     "eslint": "^8.47.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-webpack-plugin": "^4.0.1",
