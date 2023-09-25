@@ -20,6 +20,7 @@
     "pre-commit": "lint-staged",
     "test": "jest",
     "e2e": "env-cmd -e development cypress open",
+    "deploy:pre": "set BUILD_PATH='./docs' && npm run build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
@@ -113,6 +114,7 @@
       "last 1 safari version"
     ]
   },
+  "homepage": "https://anywherey.github.io/react-template-h5_ts/",
   "engines": {
     "node": ">=16.10.0",
     "npm": ">=7.19.1"
