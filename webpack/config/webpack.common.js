@@ -122,7 +122,7 @@ const config = {
   },
   plugins: [
     new ESLintWebpackPlugin(),
-    isDevelopment&&new MiniCssExtractPlugin({
+    !isDevelopment&&new MiniCssExtractPlugin({
           filename: "css/[name].[contenthash:8].css",
           chunkFilename: "css/[name].[contenthash:8].chunk.css",
           ignoreOrder: true,

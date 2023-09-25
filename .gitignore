@@ -3,7 +3,6 @@
 tests/__coverage__
 tests/__test__
 cypress/
-package-lock.json
 # dependencies
 /node_modules
 # production

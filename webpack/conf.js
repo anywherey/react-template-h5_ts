@@ -4,7 +4,7 @@ const PROJECT_PATH = path.resolve(__dirname, "../");
 const PROJECT_NAME = path.parse(PROJECT_PATH).name;
 
 // Whether to enable bundle package analysis
-const shouldOpenAnalyzer = true;
+const shouldOpenAnalyzer = false;
 const ANALYZER_HOST = "localhost";
 const ANALYZER_PORT = "8888";
 
