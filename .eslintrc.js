@@ -18,7 +18,17 @@ module.exports = {
     "plugin:@typescript-eslint/recommended", // 可开启针对 ts 语法推荐的规则定义, 需额外手动安装 @typescript-eslint/eslint-plugin
     "plugin:react-hooks/recommended", // 使用react-hooks中recommended的规则
   ],
-  overrides: [],
+  overrides: [
+    {
+      files: [
+        '**/__tests__/*.ts?(x)',
+        '**/tests/__test__/**/*.test.ts?(x)'
+      ],
+      env: {
+        jest: true
+      }
+    }
+  ],
   // ESLint 默认使用Espree作为其解析器，你可以在配置文件中指定一个不同的解析器
   parser: "@typescript-eslint/parser", // 需手动安装 @typescript-eslint/parser，这使Eslint能够理解TypeScript语法
   // 配置解析器支持的语法

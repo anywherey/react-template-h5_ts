@@ -4,7 +4,7 @@ const WebpackDevServer = require("webpack-dev-server"); // 本地起一个 http 
 const chalk = require("chalk"); // 终端字符串样式个性化自定义
 const webpackDevConfig = require("../config/webpack.dev");
 const detect = require("detect-port-alt"); // 端口检测
-const { SERVER_HOST, SERVER_PORT, divider } = require("../conf");
+const { divider } = require("../conf");
 const ip = require("ip"); // 获取 IP 地址实用程序
 
 const compiler = Webpack(webpackDevConfig);
@@ -56,14 +56,14 @@ const logger = {
 
 // 开启本地服务入口
 async function startServer() {
-  const resPort = await choosePort(SERVER_PORT, SERVER_HOST);
+  const resPort = await choosePort(process.env.SERVER_PORT, process.env.SERVER_HOST);
   try {
     if (resPort !== null) {
-      server.listen(resPort, SERVER_HOST, (err) => {
+      server.listen(resPort, process.env.SERVER_HOST, (err) => {
         if (err) {
           return logger.error(err.message);
         }
-        return logger.start(resPort, SERVER_HOST);
+        return logger.start(resPort, process.env.SERVER_HOST);
       });
     }
   } catch (error) {
