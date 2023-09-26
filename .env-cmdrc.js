@@ -1,6 +1,6 @@
 module.exports = {
   development: {
-    BASE_URL: "https://anywherey.github.io/react-template-h5_ts/",
+    BASE_URL: "http://192.168.1.101",
     NODE_ENV: "development",
     // Dev server host and port
     SERVER_HOST: "0.0.0.0",
