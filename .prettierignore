@@ -1,6 +1,5 @@
 node_modules/
 tests/__coverage__
-tests/__test__
 build/
 dist/
 scripts/

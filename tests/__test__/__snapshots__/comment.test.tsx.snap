@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Match Snapshot 1`] = `
+<div
+  className="arco-comment"
+>
+  <div
+    className="arco-comment-inner"
+  >
+    <div
+      className="arco-comment-inner-content"
+    />
+  </div>
+</div>
+`;

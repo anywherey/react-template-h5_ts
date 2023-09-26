@@ -5,7 +5,7 @@ import { generateSHA256Hash } from "@/utils/hash";
 import { cancelTokenInfo, cancelUrl, indexUrls } from "@/interface/http";
 
 const whiteRetry = new Set(["ECONNABORTED", undefined, 0]);
-
+console.log(process.env.BASE_URL);
 const config: AxiosRequestConfig = {
   baseURL: process.env.BASE_URL, // 接口请求地址
   timeout: 15 * 1000, // 请求超时设置
