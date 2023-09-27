@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.less";
 import { useReducer, Suspense } from "react";
 import routes from "./router";
 import { HashRouter, Routes } from "react-router-dom";

@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import "./index.less";
 import App from "./App";
 import "amfe-flexible";
 process.env.NODE_ENV === "development" && require("./mock");
