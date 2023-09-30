@@ -4,6 +4,10 @@
 
 拉取代码时如果有error Delete cr prettier/prettier报错，请禁止git自动将LF转换为CRLF:**git** config --global core.autocrlf **false**
 
+## 在线部署地址
+
+https://anywherey.github.io/react-template-h5_ts/
+
 ## 项目安装
 
 ```

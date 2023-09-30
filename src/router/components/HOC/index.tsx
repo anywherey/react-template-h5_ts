@@ -9,7 +9,7 @@ function HOCdeal(route: routeInterface, getElement: getElement) {
     const navigate = useNavigate();
     /* 在路由切换时的处理 */
     useEffect(() => {
-      if (!route.children) {
+      if (!route.children && route.path != "") {
         cancelRequest();
       }
       if (route.auth && !getToken()) {
