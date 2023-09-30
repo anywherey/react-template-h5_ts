@@ -23,7 +23,7 @@ const Login: FC = () => {
         set token后并继续跳转到page2
       </div>
       <div
-        onClick={() => navigate(-1)}
+        onClick={() => navigate(-2)}
         style={{
           cursor: "pointer",
           height: "400px",
