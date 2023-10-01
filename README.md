@@ -11,7 +11,7 @@ https://anywherey.github.io/react-template-h5_ts/
 ## 项目安装
 
 ```
-yarn install / npm install
+yarn / npm install
 ```
 
 项目运行
