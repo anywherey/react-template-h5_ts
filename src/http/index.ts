@@ -7,7 +7,7 @@ import { cancelTokenInfo, cancelUrl, indexUrls } from "@/interface/http";
 const whiteRetry = new Set(["ECONNABORTED", undefined, 0]);
 const config: AxiosRequestConfig = {
   baseURL: process.env.BASE_URL, // 接口请求地址
-  timeout: 15 * 1000, // 请求超时设置
+  timeout: 5000, // 请求超时设置
   withCredentials: false, // 跨域请求是否需要携带 cookie
   headers: {
     "Content-Type": "application/json;charset=utf-8",

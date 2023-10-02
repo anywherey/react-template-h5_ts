@@ -58,16 +58,10 @@ const Home: FC = () => {
             getTestApi();
             getTestApi();
             getTestApi();
+            cancelRequest(["/test"]);
           }}
         >
-          测试多个接口
-        </button>
-        <button
-          onClick={() => {
-            cancelRequest(["/test", "/test", "/test", "/test"]);
-          }}
-        >
-          取消该多个接口
+          一键测试多个接口并取消
         </button>
       </div>
       <button
