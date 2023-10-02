@@ -58,7 +58,9 @@ const Home: FC = () => {
             getTestApi();
             getTestApi();
             getTestApi();
-            cancelRequest(["/test"]);
+            setTimeout(() => {
+              cancelRequest("/test");
+            }, 0);
           }}
         >
           一键测试多个接口并取消
