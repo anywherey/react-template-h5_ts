@@ -1,15 +1,19 @@
 import { FC } from "react";
-import { getTestApi, getTestApi2, getMockApi } from "@/api/test/test";
+import { getTestApi, getTestApi2 } from "@/api/test/test";
 import { cancelRequest } from "@/http";
 import { useNavigate, NavigateFunction } from "react-router";
 import { getToken, removeToken } from "@/utils/authority";
 import "./index.less";
 const Home: FC = () => {
   const navRoute: NavigateFunction = useNavigate();
-  const getMockData = () => {
-    getMockApi().then((res) => {
-      console.log(res);
-    });
+  const clickCancel = async () => {
+    getTestApi();
+    getTestApi();
+    getTestApi();
+    getTestApi();
+    setTimeout(() => {
+      cancelRequest("/test");
+    }, 500);
   };
   return (
     <div className="home-page">
@@ -52,27 +56,8 @@ const Home: FC = () => {
         </button>
       </div>
       <div>
-        <button
-          onClick={() => {
-            getTestApi();
-            getTestApi();
-            getTestApi();
-            getTestApi();
-            setTimeout(() => {
-              cancelRequest("/test");
-            }, 0);
-          }}
-        >
-          一键测试多个接口并取消
-        </button>
+        <button onClick={clickCancel}>一键测试多个接口并取消</button>
       </div>
-      <button
-        onClick={() => {
-          getMockData();
-        }}
-      >
-        测试Mock了的/test4接口
-      </button>
       <div
         style={{
           height: "300px",
