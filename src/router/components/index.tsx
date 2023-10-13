@@ -24,10 +24,8 @@ const RouteWithSubRoutes = (route: routeInterface, mainPath?: string) => {
     element: wrappedElement,
   };
   const routePath = () => {
-    if (mainPath && route.path) {
-      return mainPath + route.path;
-    } else if (mainPath && !route.path) {
-      return mainPath;
+    if (mainPath) {
+      return route.path ? mainPath + route.path : mainPath;
     }
     return route.path;
   };
