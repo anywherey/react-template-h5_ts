@@ -1,7 +1,7 @@
 import { defineConfig } from "cypress";
 export default defineConfig({
   e2e: {
-    baseUrl: "http://" + process.env.SERVER_HOST + ":" + process.env.SERVER_PORT,
+    baseUrl: "http://localhost:" + process.env.SERVER_PORT,
     fileServerFolder: "tests/e2e/fileServer",
     fixturesFolder: "tests/e2e/fixtures",
     downloadsFolder: "tests/e2e/downloads",

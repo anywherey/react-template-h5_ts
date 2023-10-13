@@ -37,7 +37,7 @@ const logger = {
   error: (err) => {
     console.error(chalk.red(err));
   },
-  start: (port, host) => {
+  start: (port,host) => {
     console.log(`Server started! ${chalk.green("✓")}`);
     console.log(`
     ${chalk.bold("App running at:")}
