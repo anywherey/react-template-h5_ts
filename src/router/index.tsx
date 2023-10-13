@@ -17,7 +17,7 @@ const children: routeInterface[] = [
     Component: notfound,
   },
   {
-    path: "/login",
+    path: "/login/:from",
     Component: login,
   },
   {
@@ -25,11 +25,7 @@ const children: routeInterface[] = [
     Component: layout,
     children: [
       {
-        path: "",
-        Component: () => <Navigate to="/home" />,
-      },
-      {
-        path: "home",
+        index: true,
         Component: home,
       },
       {

@@ -8,7 +8,7 @@ const MainPage: FC = () => {
     <>
       <Outlet></Outlet>
       <Tabbar>
-        <Tabbar.Item onClick={() => navRoute("/home")} icon={<HomeO />}>
+        <Tabbar.Item onClick={() => navRoute("/")} icon={<HomeO />}>
           首页
         </Tabbar.Item>
         <Tabbar.Item onClick={() => navRoute("/community")} icon={<HomeO />}>

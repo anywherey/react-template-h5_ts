@@ -1,9 +1,8 @@
 import { Route, RouteProps } from "react-router-dom";
 import { routeInterface } from "@/interface/route";
 import HOCdeal from "./HOC";
-import { generateSHA256Hash } from "@/utils/hash";
 const RouteWithSubRoutes = (route: routeInterface, mainPath?: string) => {
-  const wrappedComponent = HOCdeal(route, 0) as React.ComponentType | null;
+  const wrappedComponent = HOCdeal(route, 0);
   const wrappedElement = HOCdeal(route, 1) as unknown as React.ReactNode | null;
   /**
    * @description 将Route组件的默认属性填入，不填入自定义的参数
@@ -27,6 +26,8 @@ const RouteWithSubRoutes = (route: routeInterface, mainPath?: string) => {
   const routePath = () => {
     if (mainPath && route.path) {
       return mainPath + route.path;
+    } else if (mainPath && !route.path) {
+      return mainPath;
     }
     return route.path;
   };
@@ -39,7 +40,7 @@ const RouteWithSubRoutes = (route: routeInterface, mainPath?: string) => {
       </Route>
     );
   } else {
-    return <Route key={routePath() || generateSHA256Hash()} {...routeProps} />;
+    return <Route key={routePath()} {...routeProps} />;
   }
 };
 export default RouteWithSubRoutes;

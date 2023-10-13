@@ -1,9 +1,10 @@
 import { FC, useEffect } from "react";
 import { setToken } from "@/utils/authority";
-import { useNavigate, NavigateFunction, useLocation } from "react-router";
+import { useNavigate, NavigateFunction, useLocation, useParams } from "react-router";
 const Login: FC = () => {
   const navigate: NavigateFunction = useNavigate();
   const location = useLocation();
+  const { from } = useParams();
   useEffect(() => {
     console.log(location);
   }, []);
@@ -11,7 +12,7 @@ const Login: FC = () => {
     <div>
       login
       <div
-        onClick={() => setToken("token") && navigate(-1)}
+        onClick={() => setToken("token") && navigate(`/${from}`)}
         style={{
           cursor: "pointer",
           height: "400px",
@@ -23,7 +24,7 @@ const Login: FC = () => {
         set token后并继续跳转到page2
       </div>
       <div
-        onClick={() => navigate(-2)}
+        onClick={() => navigate(-1)}
         style={{
           cursor: "pointer",
           height: "400px",

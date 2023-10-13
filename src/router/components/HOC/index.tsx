@@ -1,6 +1,6 @@
 import { routeInterface, getElement } from "@/interface/route";
 import { getToken } from "@/utils/authority";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { cancelRequest } from "@/http";
 function HOCdeal(route: routeInterface, getElement: getElement) {
@@ -9,11 +9,14 @@ function HOCdeal(route: routeInterface, getElement: getElement) {
     const navigate = useNavigate();
     /* 在路由切换时的处理 */
     useEffect(() => {
-      if (!route.children && route.path != "") {
+      if (!route.children && route.path && route.path != "") {
         cancelRequest();
       }
+      if (getToken() && route.path && route.path.indexOf("login") === 1) {
+        navigate("/", { replace: true });
+      }
       if (route.auth && !getToken()) {
-        navigate("/login");
+        navigate(`/login${route.path}`, { replace: true });
       }
     }, [location]);
 
@@ -21,7 +24,7 @@ function HOCdeal(route: routeInterface, getElement: getElement) {
     /* 默认返回 */
     switch (getElement) {
       case 0:
-        return route.Component && <route.Component />;
+        return route.Component ? <route.Component /> : null;
       case 1:
         return route.element;
       default:
