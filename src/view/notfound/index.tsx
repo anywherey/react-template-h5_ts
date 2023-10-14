@@ -1,6 +1,6 @@
 import { FC } from "react";
 import "./index.less";
-import imgerro from "./pics/404.png";
+import imgerro from "@/assets/pics/404.png";
 import { useNavigate, NavigateFunction } from "react-router-dom";
 
 const NotFound: FC<React.HTMLAttributes<HTMLDivElement>> = ({ ...rest }) => {

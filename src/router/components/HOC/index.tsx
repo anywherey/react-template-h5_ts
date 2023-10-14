@@ -9,9 +9,10 @@ function HOCdeal(route: routeInterface, getElement: getElement) {
     const navigate = useNavigate();
     /* 在路由切换时的处理 */
     useEffect(() => {
-      if (!route.children && route.path && route.path != "") {
+      if (!route.children && (route.path || route.index)) {
         cancelRequest();
       }
+      /* 权限判断 */
       if (getToken() && route.path && route.path.indexOf("login") === 1) {
         navigate("/", { replace: true });
       }
@@ -20,7 +21,6 @@ function HOCdeal(route: routeInterface, getElement: getElement) {
       }
     }, [location]);
 
-    /* 权限判断 */
     /* 默认返回 */
     switch (getElement) {
       case 0:

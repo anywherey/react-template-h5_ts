@@ -30,6 +30,7 @@ yarn dev / npm run dev
 ├─ src
 │   ├──api  			/ 接口存放位置
 │   ├──components		/ 公共组件
+│   ├──assets 		        / 静态资源
 │   ├──hooks			/（可选）自定义hook
 │   ├──http			/ 接口请求配置
 │   ├──interface		/ 存放定义的ts接口
