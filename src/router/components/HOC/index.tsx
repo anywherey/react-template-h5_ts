@@ -24,9 +24,9 @@ function HOCdeal(route: routeInterface, getElement: getElement) {
     /* 默认返回 */
     switch (getElement) {
       case 0:
-        return route.Component ? <route.Component /> : null;
-      case 1:
-        return route.element;
+        return route.Component && <route.Component />;
+      // case 1:
+      //   return route.element;
       default:
         return null;
     }

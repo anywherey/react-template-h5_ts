@@ -6,10 +6,14 @@ interface newRouteObject {
   permissions?: permissions; //权限
 }
 // 修改原有IndexRouteObject接口
-interface extendedIndexRouteObject extends IndexRouteObject, newRouteObject {}
-// 修改原有NonIndexRouteObject接口
-interface extendedNonIndexRouteObject extends NonIndexRouteObject, newRouteObject {}
+interface extendedIndexRouteObject extends Omit<IndexRouteObject, "element">, newRouteObject {
+  element?: null; // 将 element 属性设置为 null
+}
 
+// 修改原有NonIndexRouteObject接口
+interface extendedNonIndexRouteObject extends Omit<NonIndexRouteObject, "element">, newRouteObject {
+  element?: null; // 将 element 属性设置为 null
+}
 export type routeInterface = extendedIndexRouteObject | extendedNonIndexRouteObject;
 /**
  *  判断路由处理中是element还是component

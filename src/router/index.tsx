@@ -11,6 +11,10 @@ const home = lazy(() => import(/* webpackChunkName:"Home" */ "@/view/home/index"
 const community = lazy(() => import(/* webpackChunkName:"Community" */ "@/view/community/index"));
 const my = lazy(() => import(/* webpackChunkName:"My" */ "@/view/my/index"));
 
+// 放弃element属性,会影响性能，源于官网
+// You should only opt into the Component API for data routes via RouterProvider.
+// Using this API on a <Route> inside <Routes> will de-optimize
+// React's ability to reuse the created element across renders.
 const children: routeInterface[] = [
   {
     path: "*",

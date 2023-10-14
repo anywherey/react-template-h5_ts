@@ -3,7 +3,7 @@ import { routeInterface } from "@/interface/route";
 import HOCdeal from "./HOC";
 const RouteWithSubRoutes = (route: routeInterface, mainPath?: string) => {
   const wrappedComponent = HOCdeal(route, 0);
-  const wrappedElement = HOCdeal(route, 1) as unknown as React.ReactNode | null;
+  // const wrappedElement = HOCdeal(route, 1);
   /**
    * @description 将Route组件的默认属性填入，不填入自定义的参数
    */
@@ -21,7 +21,7 @@ const RouteWithSubRoutes = (route: routeInterface, mainPath?: string) => {
     ErrorBoundary: route.ErrorBoundary,
     lazy: route.lazy,
     Component: wrappedComponent,
-    element: wrappedElement,
+    // element: wrappedElement,
   };
   const routePath = () => {
     if (mainPath) {
