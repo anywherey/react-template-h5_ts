@@ -1,6 +1,7 @@
 import { FC, useEffect } from "react";
 import { setToken } from "@/utils/authority";
 import { useNavigate, NavigateFunction, useLocation, useParams } from "react-router";
+import "./index.less";
 const Login: FC = () => {
   const navigate: NavigateFunction = useNavigate();
   const location = useLocation();
@@ -9,30 +10,12 @@ const Login: FC = () => {
     console.log(location);
   }, []);
   return (
-    <div>
+    <div className="login-page">
       login
-      <div
-        onClick={() => setToken("token") && navigate(`/${from}`)}
-        style={{
-          cursor: "pointer",
-          height: "400px",
-          lineHeight: "400px",
-          textAlign: "center",
-          backgroundColor: "pink",
-        }}
-      >
+      <div onClick={() => setToken("token") && navigate(`/${from}`)} className="login-page-to">
         set token后并继续跳转到page2
       </div>
-      <div
-        onClick={() => navigate(-1)}
-        style={{
-          cursor: "pointer",
-          height: "400px",
-          lineHeight: "400px",
-          textAlign: "center",
-          backgroundColor: "skyblue",
-        }}
-      >
+      <div onClick={() => navigate(-1)} className="login-page-back">
         后退
       </div>
     </div>

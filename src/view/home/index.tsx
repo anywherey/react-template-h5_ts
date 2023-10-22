@@ -19,19 +19,10 @@ const Home: FC = () => {
     <div className="home-page">
       <div className="home-page-first">home</div>
       <div onClick={() => (getToken() ? console.log("gettoken") : "")}>getToken</div>
-      <div
-        onClick={() => removeToken()}
-        style={{
-          cursor: "pointer",
-          height: "100px",
-          lineHeight: "100px",
-          textAlign: "center",
-          backgroundColor: "goldenrod",
-        }}
-      >
+      <div onClick={() => removeToken()} className="home-page-remove">
         removeToken
       </div>
-      <div style={{ marginTop: "30px" }}>
+      <div className="mgt30">
         <button
           onClick={() => {
             getTestApi();
@@ -58,32 +49,10 @@ const Home: FC = () => {
       <div>
         <button onClick={clickCancel}>一键测试多个接口并取消</button>
       </div>
-      <div
-        style={{
-          height: "300px",
-          background: "skyblue",
-          display: "flex",
-          alignItems: "center",
-          cursor: "pointer",
-          justifyContent: "center",
-          marginTop: "50px",
-        }}
-        onClick={() => navRoute("/page1")}
-      >
+      <div className="home-page-nav1" onClick={() => navRoute("/page1")}>
         去page1无权限页面
       </div>
-      <div
-        style={{
-          height: "300px",
-          background: "green",
-          display: "flex",
-          alignItems: "center",
-          cursor: "pointer",
-          justifyContent: "center",
-          marginTop: "50px",
-        }}
-        onClick={() => navRoute("/page2")}
-      >
+      <div className="home-page-nav2" onClick={() => navRoute("/page2")}>
         去page2权限页面
       </div>
     </div>
