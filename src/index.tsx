@@ -1,10 +1,10 @@
 import ReactDOM from "react-dom/client";
 import "./index.less";
 import App from "./App";
-// 过时方案,且该插件已经不再维护
-// import "amfe-flexible";
+// rem调整font-size,且该插件已经不再维护
+import "amfe-flexible";
 // 高清方案
-import "./utils/highDefinition";
+// import "./utils/highDefinition";
 process.env.NODE_ENV === "development" && require("./mock");
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(

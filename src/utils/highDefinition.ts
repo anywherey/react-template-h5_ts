@@ -3,7 +3,7 @@ const docEl = document.documentElement;
 const fontEl = document.createElement("style");
 const metaEl = document.querySelector('meta[name="viewport"]');
 const dpr = window.devicePixelRatio || 1;
-const rem = 50 * ((docEl.clientWidth * dpr) / 375);
+const rem = 100 * ((docEl.clientWidth * dpr) / 750);
 const scale = 1 / dpr;
 // 设置viewport，进行缩放，达到高清效果
 metaEl.setAttribute(
