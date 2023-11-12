@@ -65,6 +65,7 @@ yarn dev / npm run dev
 
 可以手动书写自己想要hook到src/hooks文件夹下，也可以用插件如ahooks(官网：https://ahooks.js.org/zh-CN/hooks/use-request/index)
 
+
 ## cypress插件安装慢时的报错解决
 
 如果出现网速慢无法安装成功，可以先通过 npm 安装 cnpm, 再通过 cnpm 安装 cypress。 cnpm 是国内镜像版，下载速度非常快。
@@ -72,6 +73,7 @@ yarn dev / npm run dev
 ```
 npm install -g cnpm --registry=https://registry.npm.taobao.org cnpm install cypress
 ```
+
 
 # 路由说明
 
@@ -140,7 +142,6 @@ lint-staged.config的校验代码功能默认注释关闭。若有需要，可�
 ## eslint配置说明
 
 配置详情见官网文档:https://zh-hans.eslint.org/docs/latest/use/configure/
-
 
 # 单元测试
 

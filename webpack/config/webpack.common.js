@@ -45,7 +45,7 @@ const config = {
     },
   },
   resolve: {
-    extensions: [".tsx", ".ts"],
+    extensions: [".tsx", ".ts",".js"],
     alias: {
       "@": paths.appSrc,
       // mock: paths.appMock,
@@ -59,14 +59,13 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.(tsx?|ts)$/,
+        test: /\.(tsx?|js)$/,
         loader: "babel-loader", // 使用缓存
         options: { cacheDirectory: true },
         exclude: [/node_modules/, /(.|_)min\.js$/],
       },
       {
         test: /\.css$/,
-
         use: cssLoaders(1),
       },
       {
@@ -122,7 +121,7 @@ const config = {
   },
   plugins: [
     new ESLintWebpackPlugin(),
-    isProduction&&new MiniCssExtractPlugin({
+    !isDevelopment&&new MiniCssExtractPlugin({
           filename: "css/[name].[contenthash:8].css",
           chunkFilename: "css/[name].[contenthash:8].chunk.css",
           ignoreOrder: true,

@@ -14,9 +14,9 @@ const devConfig = {
   },
   stats: 'errors-only', // 终端仅打印 error
   devServer: {
-    host: "0.0.0.0",
+    host: process.env.SERVER_HOST,
     compress: true, // 是否启用 gzip 压缩
-    open: false, // 打开默认浏览器
+    open: true, // 打开默认浏览器
     hot: true, // 热更新
     client: {
       progress: true,

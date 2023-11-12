@@ -3,7 +3,7 @@ import { getToken } from "@/utils/authority";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { cancelRequest } from "@/http";
-function withHOCdeal(route: routeInterface, getElement: getElement) {
+function HOCdeal(route: routeInterface, getElement: getElement) {
   return function AuthCheckWrapper() {
     const location = useLocation();
     const navigate = useNavigate();
@@ -32,4 +32,4 @@ function withHOCdeal(route: routeInterface, getElement: getElement) {
     }
   };
 }
-export default withHOCdeal;
+export default HOCdeal;

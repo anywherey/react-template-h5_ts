@@ -196,7 +196,8 @@ samp  {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-//针对
+
+//针对rem的字体大小处理
 .px2px(@name, @px){
   @{name}: round(@px / 2) * 1px;
   [data-dpr="2"] & {

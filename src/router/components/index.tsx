@@ -1,8 +1,8 @@
 import { Route, RouteProps } from "react-router-dom";
 import { routeInterface } from "@/interface/route";
-import withHOCdeal from "./HOC";
+import HOCdeal from "./HOC";
 const RouteWithSubRoutes = (route: routeInterface, mainPath?: string) => {
-  const wrappedComponent = withHOCdeal(route, 0);
+  const wrappedComponent = HOCdeal(route, 0);
   // const wrappedElement = HOCdeal(route, 1);
   /**
    * @description 将Route组件的默认属性填入，不填入自定义的参数
