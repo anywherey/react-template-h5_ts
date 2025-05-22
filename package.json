@@ -51,7 +51,7 @@
     "compression-webpack-plugin": "^10.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "core-js": "^3.31.1",
-    "crypto-js": "^4.1.1",
+    "crypto-js": "^4.2.0",
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
     "detect-port-alt": "^1.1.6",
